@@ -21,6 +21,9 @@ public class PlaySongService extends Service {
     private static final String PREVIOUS  = "PREVIOUS";
     private static final String NEXT      = "NEXT";
     private static int NOTIFICATION_ID    = 1;
+    private static int CODE_PRE           = 11;
+    private static int CODE_PAUSE         = 12;
+    private static int CODE_NEXT          = 13;
 
 
 
@@ -93,7 +96,7 @@ public class PlaySongService extends Service {
 
         intent = new Intent(PAUSE);
         pendingIntent = PendingIntent.getActivity(getApplicationContext(),
-                11, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                CODE_PAUSE, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         notificationView.setOnClickPendingIntent(R.id.button_notify_play, pendingIntent);
         if (myPlayer.isSongPlaying()) {
             notificationView.setImageViewResource(R.id.button_notify_play,
@@ -106,12 +109,12 @@ public class PlaySongService extends Service {
 
         intent = new Intent(PREVIOUS);
         pendingIntent = PendingIntent.getActivity(getApplicationContext(),
-                12, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                CODE_PRE, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         notificationView.setOnClickPendingIntent(R.id.button_notify_previous, pendingIntent);
 
         intent = new Intent(NEXT);
         pendingIntent = PendingIntent.getActivity(getApplicationContext(),
-                13, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                CODE_NEXT, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         notificationView.setOnClickPendingIntent(R.id.button_notify_next, pendingIntent);
 
         mNotification = mBuilder

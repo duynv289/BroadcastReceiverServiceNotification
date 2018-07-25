@@ -2,4 +2,7 @@
     <string name="app_name">BroadcastReceiverServiceNotificationDemo</string>
     <string name="_00_00">00:00</string>
     <string name="songName">Tên bài hát</string>
+    <string name="lip">L.I.P</string>
+    <string name="sainguoisaithoidiem">Sai Người Sai Thời Điểm</string>
+    <string name="yeuduong">Yêu Đương</string>
 </resources>

@@ -13,4 +13,7 @@
     <dimen name="dp_220">220dp</dimen>
     <dimen name="dp_254">254dp</dimen>
     <dimen name="dp_337">337dp</dimen>
+
+    <dimen name="sp_15">15sp</dimen>
+    <dimen name="sp_20">20sp</dimen>
 </resources>

@@ -9,38 +9,38 @@ import java.util.List;
 
 
 public class MyPlayer{
-    private MediaPlayer mediaPlayer;
-    private List<Song> arrSong;
-    private boolean STATE = false;
+    private MediaPlayer mMediaPlayer;
+    private List<Song> mArrSong;
+    private boolean mState = false;
     private int mPosition = 0;
     private Context mContext;
 
     public MyPlayer(Context context) {
         this.mContext = context;
-        arrSong = new ArrayList<>();
-        arrSong.add(new Song("L.I.P",R.raw.lip));
-        arrSong.add(new Song("Sai Người Sai Thời Điểm",R.raw.sainguoisaithoidiem));
-        arrSong.add(new Song("Yêu Đương",R.raw.yeuduong));
+        mArrSong = new ArrayList<>();
+        mArrSong.add(new Song(String.valueOf(R.string.lip),R.raw.lip));
+        mArrSong.add(new Song(String.valueOf(R.string.sainguoisaithoidiem),R.raw.sainguoisaithoidiem));
+        mArrSong.add(new Song(String.valueOf(R.string.yeuduong),R.raw.yeuduong));
         createSong();
     }
 
     public String getSongName(){
-        return arrSong.get(mPosition).getName();
+        return mArrSong.get(mPosition).getName();
     }
 
     public void play(){
-        if (mediaPlayer.isPlaying() == false) mediaPlayer.start();
+        if (!mMediaPlayer.isPlaying()) mMediaPlayer.start();
     }
     public void stop(){
-        if(mediaPlayer.isPlaying()) mediaPlayer.stop();
+        if(mMediaPlayer.isPlaying()) mMediaPlayer.stop();
     }
     public boolean isSongPlaying(){
-        return mediaPlayer != null && mediaPlayer.isPlaying();
+        return mMediaPlayer != null && mMediaPlayer.isPlaying();
     }
 
     public void preSong(){
         if(mPosition == 0){
-            mPosition = arrSong.size();
+            mPosition = mArrSong.size();
         }
         mPosition--;
         stop();
@@ -48,7 +48,7 @@ public class MyPlayer{
         play();
     }
     public void nextSong(){
-        if(mPosition == arrSong.size()-1){
+        if(mPosition == mArrSong.size()-1){
             mPosition = -1;
         }
         mPosition++;
@@ -57,28 +57,28 @@ public class MyPlayer{
         play();
     }
     public void playPauseSong() {
-        if (!STATE) {
-            STATE = true;
-            mediaPlayer.start();
+        if (!mState) {
+            mState = true;
+            mMediaPlayer.start();
         } else {
-            STATE = false;
-            mediaPlayer.pause();
+            mState = false;
+            mMediaPlayer.pause();
         }
     }
     public void createSong(){
-        mediaPlayer = MediaPlayer.create(mContext,arrSong.get(mPosition).getDirectory());
+        mMediaPlayer = MediaPlayer.create(mContext, mArrSong.get(mPosition).getDirectory());
     }
     public int getTimeTotal(){
-        return mediaPlayer.getDuration();
+        return mMediaPlayer.getDuration();
     }
     public void seekTo(int position){
-        mediaPlayer.seekTo(position);
+        mMediaPlayer.seekTo(position);
     }
     public int updateTime(){
-        return mediaPlayer.getCurrentPosition();
+        return mMediaPlayer.getCurrentPosition();
     }
     public void onCompletion(){
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 nextSong();
